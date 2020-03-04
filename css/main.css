@@ -1,0 +1,47 @@
+body {
+    background-image: url(../images/test.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    z-index: -1;
+}
+
+.search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    margin-left: 200px;
+    margin-right: 200px;
+    height: 150px;
+}
+
+input[type=text] {
+    border: none;
+    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    color: white;
+    font-weight: 500;
+}
+
+input:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+    .search {
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+}
