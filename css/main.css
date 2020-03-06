@@ -6,17 +6,38 @@ body {
     z-index: -1;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .search {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     width: auto;
     margin-left: 200px;
     margin-right: 200px;
-    height: 150px;
+    height: auto;
+}
+
+.bookmarks {
+    display: flex;
+    color: white;
+    margin: auto;
+    font-size: 18px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.bookmarks-button {
+    background: transparent;
+    border: 2px rgba(0, 0, 0, 0.4) dashed;
+    width: 100px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 100;
+    font-size: 1em;
+    padding: 0;
 }
 
 input[type=text] {
