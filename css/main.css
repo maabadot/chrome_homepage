@@ -1,8 +1,24 @@
+@font-face {
+    font-family: Ubuntu;
+    src: url(../fonts/Ubuntu-B.ttf)
+}
+
+@font-face {
+    font-family: Exo2L;
+    src: url(../fonts/Exo2.0-Light.otf)
+}
+
+@font-face {
+    font-family: Exo2M;
+    src: url(../fonts/Exo2.0-Medium.otf)
+}
+
 body {
-    background-image: url(../images/test.jpg);
+    background: #f58b57;
+    /* background-image: url(../images/test.jpg);
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
+    background-size: cover; 
+    background-position: top;*/
     z-index: -1;
 }
 
@@ -11,11 +27,27 @@ body {
     flex-direction: column;
 }
 
+.time {
+    align-self: center;
+}
+
+.time p {
+    font-family: Ubuntu;
+    color: white;
+    font-size: 5em;
+    margin: 0px;
+}
+
+.date {
+    font-family: Exo2L;
+    color: white;
+    align-self: center;
+}
 
 .search {
     width: auto;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 15%;
+    margin-right: 15%;
     height: auto;
 }
 
@@ -27,6 +59,14 @@ body {
     align-items: center;
     align-content: center;
     justify-content: center;
+}
+
+.bookmarks-category {
+    font-family: Ubuntu;
+}
+
+.bookmarks-child {
+    font-family: Exo2L;
 }
 
 .bookmarks-button {
@@ -49,6 +89,7 @@ input[type=text] {
     box-sizing: border-box;
     color: white;
     font-weight: 500;
+    font-family: Exo2L;
 }
 
 input:focus {
@@ -58,11 +99,4 @@ input:focus {
 ::placeholder {
     color: rgba(255, 255, 255, 0.6);
     font-weight: 500;
-}
-
-@media only screen and (max-width: 600px) {
-    .search {
-        margin-right: 100px;
-        margin-left: 100px;
-    }
 }
