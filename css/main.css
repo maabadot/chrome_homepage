@@ -13,18 +13,25 @@
     src: url(../fonts/Exo2.0-Medium.otf)
 }
 
+html {
+    height: 100%;
+    background: url(../images/test.jpg) no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: brightness(50%) contrast(80%);
+    z-index: -1; 
+}
+
 body {
-    background: #f58b57;
-    /* background-image: url(../images/test.jpg);
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: top;*/
-    z-index: -1;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    margin-top: 10%;
 }
 
 .time {
@@ -56,28 +63,58 @@ body {
     color: white;
     margin: auto;
     font-size: 18px;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    align-items: flex-start;
 }
 
 .bookmarks-category {
+    display: flex;
+    flex-direction: column;
     font-family: Ubuntu;
+    padding: 0px 10px;
 }
 
 .bookmarks-child {
     font-family: Exo2L;
 }
 
+.bookmarks-child a,
+.bookmarks-child a:visited {
+    color: white;
+}
+
 .bookmarks-button {
     background: transparent;
-    border: 2px rgba(0, 0, 0, 0.4) dashed;
-    width: 100px;
+    border: 1px rgba(255, 255, 255, 0.4) solid;
+    width: 100%;
     text-align: center;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.4);
     font-weight: 100;
     font-size: 1em;
     padding: 0;
+    margin-top: 10px;
+    align-self: center;
+}
+
+.bookmarks-button:hover {
+    border: 1px rgba(255, 255, 255, 0.9) solid;
+    color: rgba(255, 255, 255, 0.9);
+    transition: 0.3s;
+}
+
+.pinned-bookmarks {
+    display: flex;
+    align-self: flex-start;
+}
+
+.pinned-bookmarks-child a {
+    font-size: 18px;
+    color: white;
+    font-family: Exo2L;
+    padding: 0px 10px;
+}
+
+.bookmarks-button:focus {
+    outline: none;
 }
 
 input[type=text] {
