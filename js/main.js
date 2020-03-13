@@ -1,5 +1,6 @@
 const input = document.querySelector('#input');
 
+// Redirecting to google after clicking 'Enter' in search field
 input.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         let link = 'https://www.google.com/search?q=' + input.value;
@@ -7,22 +8,59 @@ input.addEventListener("keypress", function(event) {
     }
 })
 
-const addCategory = document.querySelector('.pinned-add-category');
-addCategory.addEventListener('click', function(event) {
-    console.log('clicked');
+// Opening modal for adding categories
+const openModelAddCategory = document.querySelector('.pinned-add-category');
+openModelAddCategory.addEventListener('click', function(event) {
+    let modal = document.querySelector('#modalCategory');
+    modal.classList.toggle('closed');
 });
 
+//
+const addCategory = document.querySelector('#buttonAddCategory');
+addCategory.addEventListener('click', function(event) {
+
+});
 
 let bookmarksElement = document.querySelector('.bookmarks');
 
+// localStrorage bookmarks loading function
 function loadBookmarks() {
-    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')).categories;
-    for (let i = 0; i < bookmarks.length; i++) {
-        console.log(bookmarks[i]);
+    let bookmarksJson = JSON.parse(localStorage.getItem('bookmarks'));
+    let bookmarks;
 
+    // Check if bookmarks are empty
+    // Add 'Let's get started' category if they are
+    if (bookmarksJson != null) {
+        bookmarks = bookmarksJson;
+    } else {
+        let initialzieBookmarks = {
+            "categories": [
+                {
+                    "name": "Let's get started",
+                    "categoryBookmarks": [
+                        {
+                            "name": "VK",
+                            "link": "https://vk.com"
+                        },
+                        {
+                            "name": "Github",
+                            "link": "https://github.com"
+                        }
+                    ]
+                }
+            ]
+        };
+        bookmarks = initialzieBookmarks.categories;
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    }
+
+    for (let i = 0; i < bookmarks.length; i++) {
+        
+        // Category root element
         let category = document.createElement('div');
         category.className += "bookmarks-category";
 
+        // Category header
         let header = document.createElement('p');
         header.innerHTML = bookmarks[i].name;
         category.appendChild(header);
@@ -31,37 +69,37 @@ function loadBookmarks() {
         for (let j = 0; j < categoryBookmarks.length; j++) {
             bookmark = categoryBookmarks[j];
 
+            // Link to site
             let link = document.createElement('a');
             link.href = bookmark.link;
             link.innerHTML = bookmark.name;
 
+            // Child element containing link
             let child = document.createElement('div');
             child.className += 'bookmarks-child';
             child.appendChild(link);
 
+            // Appending child to category
             category.appendChild(child);
 
             console.log(bookmark);
         }
         console.log(category);
 
-        // let buttonElement = document.createElement('button');
-        // buttonElement.innerHTML = '+';
-        // buttonElement.className += 'button';
-
+        // Adding button to the end of category
         let div = document.createElement('div');
         div.className += 'bookmarks-button';
         div.innerHTML = '+';
         div.id = `button${i}`;
-        // div.appendChild(buttonElement);
-
         category.appendChild(div);
 
+        // Adding category
         bookmarksElement.appendChild(category);
     }
     
 }
 
+// Load bookmarks from localStorage
 loadBookmarks()
 
 const buttonAddChild1 = document.querySelector('#button1');
