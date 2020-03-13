@@ -15,23 +15,20 @@ openModelAddCategory.addEventListener('click', function(event) {
     modal.classList.toggle('closed');
 });
 
-//
-const addCategory = document.querySelector('#buttonAddCategory');
-addCategory.addEventListener('click', function(event) {
 
-});
 
-let bookmarksElement = document.querySelector('.bookmarks');
 
 // localStrorage bookmarks loading function
 function loadBookmarks() {
+    let bookmarksElement = document.querySelector('.bookmarks');
+    bookmarksElement.innerHTML = '';
     let bookmarksJson = JSON.parse(localStorage.getItem('bookmarks'));
     let bookmarks;
 
     // Check if bookmarks are empty
     // Add 'Let's get started' category if they are
     if (bookmarksJson != null) {
-        bookmarks = bookmarksJson;
+        bookmarks = bookmarksJson.categories;
     } else {
         let initialzieBookmarks = {
             "categories": [
@@ -51,8 +48,10 @@ function loadBookmarks() {
             ]
         };
         bookmarks = initialzieBookmarks.categories;
-        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        localStorage.setItem('bookmarks', JSON.stringify(initialzieBookmarks));
     }
+
+    console.log(bookmarks);
 
     for (let i = 0; i < bookmarks.length; i++) {
         
@@ -102,18 +101,37 @@ function loadBookmarks() {
 // Load bookmarks from localStorage
 loadBookmarks()
 
-const buttonAddChild1 = document.querySelector('#button1');
+// const buttonAddChild1 = document.querySelector('#button1');
 
-buttonAddChild1.addEventListener('click', function(event) {
+// buttonAddChild1.addEventListener('click', function(event) {
 
-    let element = document.createElement('div');
-    let a = document.createElement('a');
-    a.innerHTML = 'vk.com';
-    a.href = 'https://vk.com';
-    element.className += "bookmarks-child"
-    element.append(a);
+//     let element = document.createElement('div');
+//     let a = document.createElement('a');
+//     a.innerHTML = 'vk.com';
+//     a.href = 'https://vk.com';
+//     element.className += "bookmarks-child"
+//     element.append(a);
     
-    let category = document.querySelector('.bookmarks-category');
-    let button = document.querySelector('.button');
-    category.insertBefore(element, button);
-})
+//     let category = document.querySelector('.bookmarks-category');
+//     let button = document.querySelector('.button');
+//     category.insertBefore(element, button);
+// })
+
+//
+const addCategory = document.querySelector('#buttonAddCategory');
+addCategory.addEventListener('click', function(event) {
+    let inputAddCategory = document.querySelector('#inputAddCategory');
+    let text = inputAddCategory.value;
+
+    let localBookmarks = JSON.parse(localStorage.getItem('bookmarks')).categories;
+    let obj = {
+        "name": text,
+        "categoryBookmarks": []
+    }
+    localBookmarks.push(obj);
+    obj = {
+        "categories": localBookmarks
+    }
+    localStorage.setItem('bookmarks', JSON.stringify(obj));
+    loadBookmarks();
+});
