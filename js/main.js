@@ -15,9 +15,6 @@ openModelAddCategory.addEventListener('click', function(event) {
     modal.classList.toggle('closed');
 });
 
-
-
-
 // localStrorage bookmarks loading function
 function loadBookmarks() {
     let bookmarksElement = document.querySelector('.bookmarks');
@@ -92,30 +89,37 @@ function loadBookmarks() {
         div.id = `button${i}`;
         category.appendChild(div);
 
+        addBookmarkListener(div, i);
         // Adding category
         bookmarksElement.appendChild(category);
     }
     
 }
 
+//
+function addBookmarkListener (button, i) {
+    button.addEventListener('click', function(event) {
+        let modalBookmarks = document.querySelector('#modalBookmark');
+        let addBookmarkButton = document.querySelector('#buttonAddBookmark');
+        let inputBookmarkName = document.querySelector('#inputAddBookmarkName');
+        let inputBookmarkLink = document.querySelector('#inputAddBookmarkLink');
+
+        modalBookmarks.classList.toggle('closed');
+        addBookmarkButton.addEventListener('click', function(event) {
+            let local = JSON.parse(localStorage.getItem('bookmarks'));
+            let object = {
+                "name": inputBookmarkName.value,
+                "link": inputBookmarkLink.value
+            };
+            local.categories[i].categoryBookmarks.push(object);
+            localStorage.setItem('bookmarks', JSON.stringify(local));
+            loadBookmarks();
+        });
+    });
+}
+
 // Load bookmarks from localStorage
 loadBookmarks()
-
-// const buttonAddChild1 = document.querySelector('#button1');
-
-// buttonAddChild1.addEventListener('click', function(event) {
-
-//     let element = document.createElement('div');
-//     let a = document.createElement('a');
-//     a.innerHTML = 'vk.com';
-//     a.href = 'https://vk.com';
-//     element.className += "bookmarks-child"
-//     element.append(a);
-    
-//     let category = document.querySelector('.bookmarks-category');
-//     let button = document.querySelector('.button');
-//     category.insertBefore(element, button);
-// })
 
 //
 const addCategory = document.querySelector('#buttonAddCategory');
